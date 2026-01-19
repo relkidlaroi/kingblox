@@ -89,3 +89,19 @@ code {
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
 }
+/* FORCE REMOVE Emergent badge */
+a[href*="emergent"],
+a[href*="made-with-emergent"],
+div[class*="emergent"],
+div[id*="emergent"],
+img[alt*="Emergent"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Kill fixed bottom-right badge */
+div[style*="position: fixed"][style*="bottom"] {
+  display: none !important;
+}
