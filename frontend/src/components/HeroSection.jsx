@@ -72,19 +72,14 @@ const HeroSection = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button
-              onClick={() => window.open('https://wa.me/6281381562906', '_blank')}
-              className="bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-6 text-lg rounded-full transition-all hover:scale-105 shadow-lg shadow-green-500/30 group"
-            >
-              <span>Order via WhatsApp</span>
-              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            <Button asChild className="bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-6 text-lg rounded-full transition-all hover:scale-105 shadow-lg shadow-green-500/30 group">
+              <a href="https://wa.me/6281381562906" target="_blank" rel="noopener noreferrer">
+                <span>Order via WhatsApp</span>
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              </a>
             </Button>
-            <Button
-              onClick={() => window.open('https://discord.com/invite/kingblox', '_blank')}
-              variant="outline"
-              className="border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black font-bold px-8 py-6 text-lg rounded-full transition-all hover:scale-105"
-            >
-              Join Community
+            <Button asChild variant="outline" className="border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black font-bold px-8 py-6 text-lg rounded-full transition-all hover:scale-105">
+              <a href="https://discord.com/invite/kingblox" target="_blank" rel="noopener noreferrer">Join Community</a>
             </Button>
           </div>
 

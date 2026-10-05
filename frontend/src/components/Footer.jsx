@@ -16,10 +16,6 @@ const Footer = () => {
     { icon: DiscordIcon, link: contactData.discord, label: 'Discord' }
   ];
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
     <footer className="relative bg-black border-t border-white/10">
       {/* Pixel Terrain Top */}
@@ -34,10 +30,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 md:px-6 py-12 pt-16">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Logo Section */}
-          <div 
-            className="flex items-center gap-3 cursor-pointer group"
-            onClick={scrollToTop}
-          >
+          <a href="#hero" className="flex items-center gap-3 group">
             <div className="relative">
               <Crown className="w-10 h-10 text-yellow-400 group-hover:scale-110 transition-transform" />
             </div>
@@ -50,21 +43,23 @@ const Footer = () => {
               </span>
               <span className="text-xs text-gray-500">{footerData.tagline}</span>
             </div>
-          </div>
+          </a>
 
           {/* Social Links */}
           <div className="flex items-center gap-4">
             {socialLinks.map((social, index) => {
               const IconComponent = social.icon;
               return (
-                <button
+                <a
                   key={index}
-                  onClick={() => window.open(social.link, '_blank')}
+                  href={social.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors group"
                   aria-label={social.label}
                 >
                   <IconComponent className="w-5 h-5 text-gray-400 group-hover:text-yellow-400 transition-colors" />
-                </button>
+                </a>
               );
             })}
           </div>

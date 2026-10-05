@@ -89,9 +89,11 @@ const ContactSection = () => {
           {contactMethods.map((method) => {
             const IconComponent = method.icon;
             return (
-              <button
+              <a
                 key={method.id}
-                onClick={() => window.open(method.link, '_blank')}
+                href={method.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group bg-white/5 rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all duration-300 hover:-translate-y-2 text-left"
               >
                 {/* Icon */}
@@ -109,7 +111,7 @@ const ContactSection = () => {
                 <p className="text-yellow-400 font-medium group-hover:text-yellow-300 transition-colors">
                   {method.value}
                 </p>
-              </button>
+              </a>
             );
           })}
         </div>
@@ -123,11 +125,8 @@ const ContactSection = () => {
             <p className="text-gray-400 mb-6 max-w-md mx-auto">
               Dapatkan Robux dengan harga termurah dan proses tercepat sekarang juga!
             </p>
-            <Button
-              onClick={() => window.open('https://wa.me/6281381562906', '_blank')}
-              className="bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-6 text-lg rounded-full transition-all hover:scale-105 shadow-lg shadow-green-500/30"
-            >
-              Order Sekarang via WhatsApp
+            <Button asChild className="bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-6 text-lg rounded-full transition-all hover:scale-105 shadow-lg shadow-green-500/30">
+              <a href="https://wa.me/6281381562906" target="_blank" rel="noopener noreferrer">Order Sekarang via WhatsApp</a>
             </Button>
           </div>
         </div>

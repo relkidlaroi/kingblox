@@ -14,14 +14,6 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-    setIsMobileMenuOpen(false);
-  };
-
   const navItems = [
     { label: 'Home', id: 'hero' },
     { label: 'About', id: 'about' },
@@ -41,10 +33,7 @@ const Header = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div 
-            className="flex items-center gap-2 cursor-pointer group"
-            onClick={() => scrollToSection('hero')}
-          >
+          <a href="#hero" className="flex items-center gap-2 group">
             <div className="relative">
               <Crown className="w-8 h-8 text-yellow-400 group-hover:scale-110 transition-transform" />
             </div>
@@ -54,30 +43,31 @@ const Header = () => {
               </span>
               <span className="text-[10px] text-gray-400 tracking-widest uppercase -mt-1">Trusted Roblox Store</span>
             </div>
-          </div>
+          </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav aria-label="Main navigation" className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
-              <button
+              <a
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                href={`#${item.id}`}
                 className="text-white/80 hover:text-yellow-400 transition-colors font-medium text-sm uppercase tracking-wide"
               >
                 {item.label}
-              </button>
+              </a>
             ))}
-            <Button
-              onClick={() => window.open('https://wa.me/6281381562906', '_blank')}
-              className="bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-2 rounded-full transition-all hover:scale-105"
-            >
-              Order Now
+            <Button asChild className="bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-2 rounded-full transition-all hover:scale-105">
+              <a href="https://wa.me/6281381562906" target="_blank" rel="noopener noreferrer">Order Now</a>
             </Button>
           </nav>
 
           {/* Mobile Menu Button */}
           <button
             className="md:hidden text-white p-2"
+            type="button"
+            aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-navigation"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -85,27 +75,23 @@ const Header = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <nav className="md:hidden mt-4 pb-4 border-t border-white/10 pt-4">
-            <div className="flex flex-col gap-4">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="text-white/80 hover:text-yellow-400 transition-colors font-medium text-left"
-                >
-                  {item.label}
-                </button>
-              ))}
-              <Button
-                onClick={() => window.open('https://wa.me/6281381562906', '_blank')}
-                className="bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-2 rounded-full w-full mt-2"
+        <nav id="mobile-navigation" aria-label="Mobile navigation" hidden={!isMobileMenuOpen} className="md:hidden mt-4 pb-4 border-t border-white/10 pt-4">
+          <div className="flex flex-col gap-4">
+            {navItems.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-white/80 hover:text-yellow-400 transition-colors font-medium text-left"
               >
-                Order Now
-              </Button>
-            </div>
-          </nav>
-        )}
+                {item.label}
+              </a>
+            ))}
+            <Button asChild className="bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-2 rounded-full w-full mt-2">
+              <a href="https://wa.me/6281381562906" target="_blank" rel="noopener noreferrer">Order Now</a>
+            </Button>
+          </div>
+        </nav>
       </div>
     </header>
   );
