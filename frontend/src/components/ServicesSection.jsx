@@ -68,13 +68,10 @@ const ServicesSection = () => {
                 </p>
 
                 {/* Link */}
-                <button
-                  onClick={() => window.open('https://wa.me/6281381562906', '_blank')}
-                  className={`inline-flex items-center gap-2 ${color.text} font-medium group-hover:gap-3 transition-all`}
-                >
+                <a href="https://wa.me/6281381562906" target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 ${color.text} font-medium group-hover:gap-3 transition-all`}>
                   <span>Order Now</span>
                   <ArrowRight className="w-4 h-4" />
-                </button>
+                </a>
 
                 {/* Hover Effect */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${color.bg} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity -z-10`} />
